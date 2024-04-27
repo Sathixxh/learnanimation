@@ -129,7 +129,7 @@ class _CardFlipAnimationState extends State<CardFlipAnimation>
                             child: Text(
                               'Flutter',
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 24),
+                                  TextStyle(color: Colors.white, fontSize: 23),
                             ),
                           ),
                         ),
