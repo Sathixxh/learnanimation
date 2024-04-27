@@ -39,8 +39,6 @@ class HeroAnimation extends StatelessWidget {
   }
 }
 
-
-
 class HeroDetails extends StatelessWidget {
   final HeroInfo items;
   const HeroDetails({Key? key, required this.items});
@@ -61,6 +59,10 @@ class HeroDetails extends StatelessWidget {
               BuildContext fromHeroContext,
               BuildContext toHeroContext) {
             final Widget toHero = toHeroContext.widget;
+            // return ScaleTransition(
+            //   scale: animation,
+            //   child: toHero,
+            // );
             return RotationTransition(
               turns: animation,
               child: toHero,
