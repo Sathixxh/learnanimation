@@ -39,24 +39,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// import 'dart:math' as math;
-
-// void main() {
-//   timeDilation = 5.0;
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-    
-//       home: const CardFlipAnimation(),
-//     );
-//   }
-// }
 
 class CardFlipAnimation extends StatefulWidget {
   const CardFlipAnimation({super.key});
@@ -231,3 +213,4 @@ class _ShoppingCartButtonState extends State<ShoppingCartButton> {
     );
   }
 }
+

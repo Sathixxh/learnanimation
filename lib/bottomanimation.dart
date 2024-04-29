@@ -150,3 +150,73 @@ class _BottomAnimationState extends State<BottomAnimation>
         ));
   }
 }
+
+
+
+// import 'package:flutter/animation.dart';
+// import 'package:flutter/material.dart';
+
+class StaggeredList extends StatefulWidget {
+  @override
+  _StaggeredListState createState() => _StaggeredListState();
+}
+
+class _StaggeredListState extends State<StaggeredList> with SingleTickerProviderStateMixin {
+ late AnimationController _controller;
+   late Animation<double> _opacityAnimation;
+ late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
+
+    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Staggered List'),
+      ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          final delay = (index * 0.1).clamp(0.0, 1.0); // Create a delay based on index (0.0 to 1.0)
+          return AnimatedBuilder(
+            animation: _controller,
+            child: Container(
+              padding: EdgeInsets.all(16.0),
+              color: Colors.blueGrey,
+              child: Text('Item $index'),
+            ),
+            builder: (context, child) => Transform.scale(
+              scale: _scaleAnimation.value,
+              child: Opacity(
+                opacity: _opacityAnimation.value.clamp(0.0, 1.0),
+                child: FractionalTranslation(
+                  translation: Offset(0.0, delay), // Apply delay based on index
+                  child: child,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _controller.forward();
+        },
+        child: Icon(Icons.play_arrow),
+      ),
+    );
+  }
+}
