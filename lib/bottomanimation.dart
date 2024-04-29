@@ -31,7 +31,7 @@ class _BottomAnimationState extends State<BottomAnimation>
     // for reverse  as well
     controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        controller.reverse();
+        controller.repeat(reverse: true);
       }
 
        else if (status == AnimationStatus.dismissed) {
@@ -75,12 +75,13 @@ class _BottomAnimationState extends State<BottomAnimation>
                 child: Container(
                   // height: 200,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 223, 236, 207),
+                    color: Color.fromARGB(255, 207, 232, 236),
                     shape: BoxShape.circle,
                   ),
 
                   child: Container(
                     height: 190,
+                    
                   ),
                 ),
               );

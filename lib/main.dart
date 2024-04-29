@@ -8,6 +8,38 @@ import 'package:learnanimation/heroanimation.dart';
 import 'package:learnanimation/moveanimation.dart';
 import 'package:learnanimation/pagetrancitionanimation.dart';
 import 'package:learnanimation/screenanimation.dart';
+import 'dart:math' as math;
+
+void main() {
+  // timeDilation = 5.0;
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  MaterialApp(
+        title: 'Animation Demo',
+        // home: AnimatedContainerExample(),
+        // home: FirstPage()
+        // home: AnimatedExample(),
+        // home: AddButtonAnimation(),
+        // home: FlashAnimation()
+        // home: ScreenAnimation(),
+        home: BottomAnimation(),
+        // home: HeroAnimation(),
+        // home:heroCopy()
+        // home:ShoppingCartButton() ,
+
+        // home: MovingObjectAnimation(),
+
+        );
+  }
+}
+
+// import 'dart:math' as math;
 
 // void main() {
 //   timeDilation = 5.0;
@@ -19,42 +51,12 @@ import 'package:learnanimation/screenanimation.dart';
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//         title: 'Animation Demo',
-//         // home: AnimatedContainerExample(),
-//         // home: FirstPage()
-//         // home: AnimatedExample(),
-//         // home: AddButtonAnimation(),
-//         // home: FlashAnimation()
-//         // home: ScreenAnimation(),
-//         // home: BottomAnimation(),
-//         home: HeroAnimation(),
-//         // home:heroCopy()
-//         // home:ShoppingCartButton() ,
-
-//         // home: MovingObjectAnimation(),
-
-//         );
+//     return MaterialApp(
+    
+//       home: const CardFlipAnimation(),
+//     );
 //   }
 // }
-
-import 'dart:math' as math;
-
-void main() {
-  timeDilation = 5.0;
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const CardFlipAnimation(),
-    );
-  }
-}
 
 class CardFlipAnimation extends StatefulWidget {
   const CardFlipAnimation({super.key});
@@ -103,6 +105,7 @@ class _CardFlipAnimationState extends State<CardFlipAnimation>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: GestureDetector(
         onTap: _flipCard,
         child: Center(
@@ -110,36 +113,62 @@ class _CardFlipAnimationState extends State<CardFlipAnimation>
             width: 180,
             height: 180,
             child: Transform(
-                transform: Matrix4.rotationY(_animation.value * math.pi),
-                alignment: Alignment.center,
-                child: _isFront
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset("assets/image3.png"),
-                      )
-                    : Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.rotationY(3.14),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 56, 90, 142),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'Flutter',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 23),
-                            ),
-                          ),
-                        ),
-                      )),
+              transform: Matrix4.rotationY(_animation.value * math.pi),
+              alignment: Alignment.center,
+              child: _isFront ?  ClipRRect(
+      borderRadius: BorderRadius.circular(8.0),
+      child: Image.asset("assets/image3.png"),
+    ) : Transform(
+      alignment: Alignment.center,
+      transform: Matrix4.rotationY(3.14),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 56, 90, 142),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Center(
+          child: Text(
+            'Flutter',
+            style: TextStyle(color: Colors.white, fontSize: 24),
+          ),
+        ),
+      ),
+    )
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFront() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8.0),
+      child: Image.asset("assets/image3.png"),
+    );
+  }
+
+  Widget _buildBack() {
+    return Transform(
+      alignment: Alignment.center,
+      transform: Matrix4.rotationY(3.14),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 56, 90, 142),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Center(
+          child: Text(
+            'Flutter',
+            style: TextStyle(color: Colors.white, fontSize: 24),
           ),
         ),
       ),
     );
   }
 }
+
+// import 'package:flutter/material.dart';
 
 class ShoppingCartButton extends StatefulWidget {
   const ShoppingCartButton({super.key});
