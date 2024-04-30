@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class MovingObjectAnimation extends StatefulWidget {
-  const MovingObjectAnimation({super.key});
+class BounceAnimation extends StatefulWidget {
+  const BounceAnimation({super.key});
 
   @override
   _MoveObjectAnimationState createState() => _MoveObjectAnimationState();
 }
 
-class _MoveObjectAnimationState extends State<MovingObjectAnimation>
+class _MoveObjectAnimationState extends State<BounceAnimation>
     with SingleTickerProviderStateMixin {
   int selectedIndex = 0;
   late AnimationController animationController;
@@ -35,73 +34,8 @@ class _MoveObjectAnimationState extends State<MovingObjectAnimation>
           children: [
             SlideTransition(
               position: moveAnimation,
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 1000),
-                child: Image.asset(
-                  products[selectedIndex].image,
-                  key: ValueKey<int>(selectedIndex),
-                ),
-              ),
-            ),
-            const SizedBox(height: 25),
-            const Text(
-              "BOAT ROCKERZ 450R",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 35,
-                color: Colors.white,
-              ),
-            ),
-            const Text(
-              "Bluethooth Headophones",
-              style: TextStyle(
-                fontSize: 25,
-                color: Colors.grey,
-              ),
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(products.length, (index) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = index;
-                      });
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: products[index].color,
-                        border: Border.all(
-                          width: 2,
-                          color: selectedIndex == index
-                              ? Colors.white70
-                              : Colors.transparent,
-                        ),
-                      ),
-                      child: Icon(
-                        Icons.check,
-                        color: selectedIndex == index
-                            ? Colors.white
-                            : Colors.transparent,
-                      ),
-                    ),
-                  ),
-                );
-              }),
-            ),
-            const SizedBox(height: 25),
-            const Text(
-              "Rs. 1599",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                color: Colors.red,
+              child: Image.asset(
+               "assets/image3.png",fit: BoxFit.contain,
               ),
             ),
           ],
@@ -111,14 +45,3 @@ class _MoveObjectAnimationState extends State<MovingObjectAnimation>
   }
 }
 
-class Product {
-  final String image;
-  final Color color;
-  Product({required this.image, required this.color});
-}
-
-List<Product> products = [
-  Product(image: "assets/image3.png", color: Colors.black),
-  Product(image: "assets/image3.png", color: const Color.fromARGB(255, 0, 0, 0)),
-  Product(image: "assets/image3.png", color: Color.fromARGB(255, 140, 223, 216)),
-];

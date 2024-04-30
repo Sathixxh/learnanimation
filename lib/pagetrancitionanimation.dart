@@ -13,36 +13,29 @@ class FirstPage extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             Navigator.push(
-                context,
+                context, 
+                // PageRouteBuilder(transitionDuration: Duration(seconds: 1), pageBuilder:(context, animation, secondaryAnimation) => SecondPage(),
+                // transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                //   return SlideTransition(position: Tween<Offset>(begin: 1.0,end: 0.0).animate(animation))
+                  
+                // }, 
+                   
+                  
+                // ,)
+               
                 PageRouteBuilder(
-                  transitionDuration: Duration(milliseconds: 100),
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return SecondPage();
-                  },
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
+                  transitionDuration: Duration(milliseconds: 500),
+                  pageBuilder: (_, __, ___) => SecondPage(),
+                  transitionsBuilder: (_, animation, __, child) {
                     return SlideTransition(
                       position: Tween<Offset>(
-                              begin: Offset(1.0, 0.0), end: Offset.zero)
-                              
-                          .animate(animation),
+                        begin: Offset(1.0, 0.0),
+                        end: Offset.zero,
+                      ).animate(animation),
                       child: child,
                     );
                   },
-                )
-                // PageRouteBuilder(
-                //   transitionDuration: Duration(milliseconds: 500),
-                //   pageBuilder: (_, __, ___) => SecondPage(),
-                //   transitionsBuilder: (_, animation, __, child) {
-                //     return SlideTransition(
-                //       position: Tween<Offset>(
-                //         begin: Offset(1.0, 0.0),
-                //         end: Offset.zero,
-                //       ).animate(animation),
-                //       child: child,
-                //     );
-                //   },
-                // ),
+                ),
                 );
           },
           child: Text('Go to Second Page'),
@@ -62,30 +55,13 @@ class SecondPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Second Page'),
       ),
-      body: Row(
-        children: [
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Go back'),
-            ),
-          ),
-          VerticalDivider(
-            thickness: 2,
-            // color: Colors.amber,
-          ),
- Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Go back'),
-            ),
-          ),
-
-        ],
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Go back'),
+        ),
       ),
     );
   }

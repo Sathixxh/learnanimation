@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class HeroAnimation extends StatelessWidget {
   const HeroAnimation({Key? key});
@@ -45,6 +46,7 @@ class HeroDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 3.0;
     return Scaffold(
       appBar: AppBar(
         title: Text(items.title),

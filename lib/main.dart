@@ -20,25 +20,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-        title: 'Animation Demo',
-        // home: AnimatedContainerExample(),
-        // home: FirstPage()
-        // home: AnimatedExample(),
-        // home: AddButtonAnimation(),
-        // home: FlashAnimation()
-        // home: ScreenAnimation(),
-        home: BottomAnimation(),
-        // home: HeroAnimation(),
-        // home:heroCopy()
-        // home:ShoppingCartButton() ,
+    return MaterialApp(
+      title: 'Animation Demo',
+      // home: AnimatedContainerExample(),
+      // home: FirstPage()
+      // home: AnimatedExample(),
+      // home: AddButtonAnimation(),
+      // home: FlashAnimation()
+      // home: ScreenAnimation(),
+      // home: BottomAnimation(),
+      // home: HeroAnimation(),
 
-        // home: MovingObjectAnimation(),
+      // home:ShoppingCartButton() ,
 
-        );
+      home: BounceAnimation(),
+    );
   }
 }
-
 
 class CardFlipAnimation extends StatefulWidget {
   const CardFlipAnimation({super.key});
@@ -87,7 +85,6 @@ class _CardFlipAnimationState extends State<CardFlipAnimation>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: GestureDetector(
         onTap: _flipCard,
         child: Center(
@@ -95,28 +92,30 @@ class _CardFlipAnimationState extends State<CardFlipAnimation>
             width: 180,
             height: 180,
             child: Transform(
-              transform: Matrix4.rotationY(_animation.value * math.pi),
-              alignment: Alignment.center,
-              child: _isFront ?  ClipRRect(
-      borderRadius: BorderRadius.circular(8.0),
-      child: Image.asset("assets/image3.png"),
-    ) : Transform(
-      alignment: Alignment.center,
-      transform: Matrix4.rotationY(3.14),
-      child: Container(
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 56, 90, 142),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: const Center(
-          child: Text(
-            'Flutter',
-            style: TextStyle(color: Colors.white, fontSize: 24),
-          ),
-        ),
-      ),
-    )
-            ),
+                transform: Matrix4.rotationY(_animation.value * math.pi),
+                alignment: Alignment.center,
+                child: _isFront
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset("assets/image3.png"),
+                      )
+                    : Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.rotationY(3.14),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 56, 90, 142),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Flutter',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 24),
+                            ),
+                          ),
+                        ),
+                      )),
           ),
         ),
       ),
@@ -179,7 +178,8 @@ class _ShoppingCartButtonState extends State<ShoppingCartButton> {
             height: 70,
             width: isExpanded ? 220 : 90,
             decoration: BoxDecoration(
-              color: isExpanded ? Colors.green : Colors.purpleAccent,
+              color:
+                  isExpanded ? Colors.green : Color.fromARGB(255, 64, 123, 251),
               borderRadius: BorderRadius.circular(isExpanded ? 50 : 10),
             ),
             child: Row(
@@ -213,4 +213,3 @@ class _ShoppingCartButtonState extends State<ShoppingCartButton> {
     );
   }
 }
-
