@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class AnimatedContainerExample extends StatefulWidget {
   @override
@@ -17,10 +18,11 @@ class _AnimatedContainerExampleState extends State<AnimatedContainerExample> {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 15.0;
     return Scaffold(
       body: Center(
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 5000),
           width: _isExpanded ? 300 : 100,
           height: _isExpanded ? 300 : 100,
           color: Colors.blue,
@@ -59,35 +61,43 @@ class _AnimatedExampleState extends State<AnimatedExample> {
           Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
+              Icon(Icons.autorenew_rounded),
               AnimatedOpacity(
                 opacity: _visible ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 100),
-                child: Icon(
+                duration: const Duration(milliseconds: 3000),
+                child: const Icon(
                   Icons.view_in_ar_outlined,
                   size: 100,
                 ),
               ),
               const SizedBox(height: 20.0),
               AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 3000),
                 width: _isExpanded ? 100.0 : 70.0,
                 height: _isExpanded ? 100.0 : 70.0,
-                color: Colors.blue,
+
+decoration: BoxDecoration(
+  
+                  color: _isExpanded ? Colors.blue :Colors.amber,
+  
+   borderRadius: _isExpanded?   BorderRadius.all(Radius.circular(30.0)):BorderRadius.all(Radius.zero)),
               ),
               const SizedBox(height: 20.0),
               AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                transform: Matrix4.rotationX(_isRotated ? 0.9 : 0),
-                child: Flexible(
+                duration: const Duration(milliseconds: 3000),
+                transform: Matrix4.rotationZ(_isRotated ? 0.9 : 0),
+                child: const Flexible(
                   child: Icon(
                     Icons.verified,
                     size: 100,
+                    color: Colors.indigo,
                   ),
                 ),
               ),
               const SizedBox(height: 20.0),
               AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 3000),
                 transform: Matrix4.translationValues(
                     _isSlided ? 300.0 : 0.0, 0.0, 0.0),
                 child: Container(
@@ -97,20 +107,6 @@ class _AnimatedExampleState extends State<AnimatedExample> {
                 ),
               ),
               const SizedBox(height: 20.0),
-              TweenAnimationBuilder(
-                tween: Tween(begin: 0.0, end: 1.0),
-                duration: const Duration(milliseconds: 200),
-                builder: (context, double value, child) {
-                  return Opacity(
-                    opacity: value,
-                    child: Container(
-                      width: 100.0,
-                      height: 100.0,
-                      color: const Color.fromARGB(129, 33, 243, 96),
-                    ),
-                  );
-                },
-              ),
               const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
@@ -121,7 +117,7 @@ class _AnimatedExampleState extends State<AnimatedExample> {
                     _isSlided = !_isSlided;
                   });
                 },
-                child: const Text('Toggle Animations'),
+                child: const Text('Lets Animate'),
               ),
             ],
           ),
@@ -157,12 +153,9 @@ class _FlashAnimationState extends State<FlashAnimation>
 
     _rotationAnimation = Tween<double>(
       begin: 0,
-      end: 1 * 3.14159, // 2π radians (one full rotation)
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: const Interval(
-          0.5, 1.0), // Start rotation animation after scale animation completes
-    ));
+      end: 1 * 3.14159,
+    ).animate(
+        CurvedAnimation(parent: _controller, curve: const Interval(0.5, 1.0)));
 
     _controller.forward();
   }
@@ -279,10 +272,6 @@ class _AddButtonAnimationState extends State<AddButtonAnimation> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-
-
-            
             Center(
               child: GestureDetector(
                 onTap: () {
@@ -317,9 +306,7 @@ class _AddButtonAnimationState extends State<AddButtonAnimation> {
                   child: isClick
                       ? isLoading
                           ? const Center(
-                              child: CircularProgressIndicator(
-                              
-                              ),
+                              child: CircularProgressIndicator(),
                             )
                           : const Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -350,7 +337,7 @@ class _AddButtonAnimationState extends State<AddButtonAnimation> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: AddButtonAnimation(),
   ));
 }

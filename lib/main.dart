@@ -25,18 +25,20 @@ class MyApp extends StatelessWidget {
       // home: AnimatedContainerExample(),
       // home: FirstPage()
       // home: AnimatedExample(),
+      // home: MyRotatingIcon(),
       // home: AddButtonAnimation(),
+        // home:ShoppingCartButton() ,
       // home: FlashAnimation()
       // home: ScreenAnimation(),
       // home: BottomAnimation(),
       // home: HeroAnimation(),
 
-      // home:ShoppingCartButton() ,
+    
 
-      // home: BounceAnimation(),
+      home: BounceAnimation(),
 
       // home: CardFlipAnimation(),
-      home: ScaleAnimationButton(),
+      // home: ScaleAnimationButton(),
     );
   }
 }
@@ -210,5 +212,45 @@ class _ShoppingCartButtonState extends State<ShoppingCartButton> {
         ),
       ),
     );
+  }
+}
+
+
+
+
+class MyRotatingIcon extends StatefulWidget {
+  @override
+  _MyRotatingIconState createState() => _MyRotatingIconState();
+}
+
+class _MyRotatingIconState extends State<MyRotatingIcon>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1), // Set the duration of the animation
+    )..repeat(); // Repeat the animation indefinitely
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RotationTransition(
+      turns: _controller,
+      child: Icon(
+        Icons.autorenew_sharp, // Replace with the desired icon
+        size: 50.0,
+        color: Colors.blue,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
