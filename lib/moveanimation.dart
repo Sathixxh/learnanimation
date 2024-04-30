@@ -30,15 +30,13 @@ class _MoveObjectAnimationState extends State<BounceAnimation>
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 41, 41, 41),
       body: SafeArea(
-        child: Column(
-          children: [
-            SlideTransition(
-              position: moveAnimation,
-              child: Image.asset(
-               "assets/image3.png",fit: BoxFit.contain,
-              ),
+        child: Center(
+          child: SlideTransition(
+            position: moveAnimation,
+            child: Image.asset(
+             "assets/image3.png",height: 300 , width: 300,
             ),
-          ],
+          ),
         ),
       ),
     );

@@ -33,7 +33,10 @@ class MyApp extends StatelessWidget {
 
       // home:ShoppingCartButton() ,
 
-      home: BounceAnimation(),
+      // home: BounceAnimation(),
+
+      // home: CardFlipAnimation(),
+      home: ScaleAnimationButton(),
     );
   }
 }
@@ -107,12 +110,8 @@ class _CardFlipAnimationState extends State<CardFlipAnimation>
                             color: const Color.fromARGB(255, 56, 90, 142),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Center(
-                            child: Text(
-                              'Flutter',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 24),
-                            ),
+                          child: Center(
+                            child: Image.asset("assets/image4.png"),
                           ),
                         ),
                       )),

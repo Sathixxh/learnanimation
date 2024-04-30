@@ -122,3 +122,58 @@ class _ScreenAnimationState extends State<ScreenAnimation>
     );
   }
 }
+
+
+
+
+class ScaleAnimationButton extends StatefulWidget {
+  @override
+  _ScaleAnimationButtonState createState() => _ScaleAnimationButtonState();
+}
+
+class _ScaleAnimationButtonState extends State<ScaleAnimationButton> {
+  double _scale = 1.0;
+
+  void _onTapDown(TapDownDetails details) {
+    setState(() {
+      _scale = 0.8;
+    });
+  }
+
+  void _onTapUp(TapUpDetails details) {
+    setState(() {
+      _scale = 1.0;
+    });
+    // Add your button click functionality here
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: GestureDetector(
+          onTapDown: _onTapDown,
+          onTapUp: _onTapUp,
+          child: AnimatedContainer(
+            duration: Duration(milliseconds: 100),
+            curve: Curves.easeInOut,
+            transform: Matrix4.identity()..scale(_scale),
+            child: Container(
+              // height: 100,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                'Click Me',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
