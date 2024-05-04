@@ -64,11 +64,11 @@ class _BounceAnimationState extends State<BounceAnimation>
     super.initState();
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 1500),
     );
     moveAnimation = Tween(
       begin: const Offset(0, 0),
-      end: const Offset(0, -3), // Move upwards (negative y direction)
+      end: const Offset(0, -3), 
     ).animate(animationController);
   }
 
@@ -81,7 +81,7 @@ class _BounceAnimationState extends State<BounceAnimation>
   void _handleFlightIconTap() {
     animationController.reset();
     animationController.forward();
-    // animationController.repeat();
+    animationController.repeat();
   }
 
   @override
