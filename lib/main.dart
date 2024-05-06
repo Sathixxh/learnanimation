@@ -32,10 +32,11 @@ class MyApp extends StatelessWidget {
       // home: ScreenAnimation(),
       // home: BottomAnimation(),
       // home: HeroAnimation(),
+      home: CircularLoadingAnimation(),
 
     
 
-      home: BounceAnimation(),
+      // home: BounceAnimation(),
 
       // home: CardFlipAnimation(),
       // home: ScaleAnimationButton(),

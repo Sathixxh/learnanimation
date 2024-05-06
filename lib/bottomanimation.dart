@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+
+import 'dart:math' as math;
 
 class BottomAnimation extends StatefulWidget {
   BottomAnimation({super.key});
@@ -11,7 +12,6 @@ class BottomAnimation extends StatefulWidget {
 class _BottomAnimationState extends State<BottomAnimation>
     with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
- 
 
   void _onItemTapped(int index) {
     setState(() {
@@ -32,9 +32,7 @@ class _BottomAnimationState extends State<BottomAnimation>
     controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         controller.repeat(reverse: true);
-      }
-
-       else if (status == AnimationStatus.dismissed) {
+      } else if (status == AnimationStatus.dismissed) {
         controller.forward(from: 0.1);
       }
     });
@@ -60,11 +58,11 @@ class _BottomAnimationState extends State<BottomAnimation>
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-
+        
                   // borderRadius: BorderRadius.circular(20),
                   gradient: LinearGradient(colors: [
                     Color.fromARGB(255, 46, 49, 211),
-                 Colors.white,
+                    Colors.white,
                     Colors.green,
                   ], stops: [
                     0.0,
@@ -78,10 +76,9 @@ class _BottomAnimationState extends State<BottomAnimation>
                     color: Color.fromARGB(255, 207, 232, 236),
                     shape: BoxShape.circle,
                   ),
-
+        
                   child: Container(
                     height: 190,
-                    
                   ),
                 ),
               );
@@ -124,7 +121,7 @@ class _BottomAnimationState extends State<BottomAnimation>
                           useLegacyColorScheme: false,
                           items: const <BottomNavigationBarItem>[
                             BottomNavigationBarItem(
-                              icon: Icon(Icons.home), 
+                              icon: Icon(Icons.home),
                               label: 'Home',
                             ),
                             BottomNavigationBarItem(
@@ -151,8 +148,6 @@ class _BottomAnimationState extends State<BottomAnimation>
   }
 }
 
-
-
 // import 'package:flutter/animation.dart';
 // import 'package:flutter/material.dart';
 
@@ -161,17 +156,20 @@ class StaggeredList extends StatefulWidget {
   _StaggeredListState createState() => _StaggeredListState();
 }
 
-class _StaggeredListState extends State<StaggeredList> with SingleTickerProviderStateMixin {
- late AnimationController _controller;
-   late Animation<double> _opacityAnimation;
- late Animation<double> _scaleAnimation;
+class _StaggeredListState extends State<StaggeredList>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _opacityAnimation;
+  late Animation<double> _scaleAnimation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
 
-    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+    _opacityAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(_controller);
   }
 
@@ -190,7 +188,8 @@ class _StaggeredListState extends State<StaggeredList> with SingleTickerProvider
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-          final delay = (index * 0.1).clamp(0.0, 1.0); // Create a delay based on index (0.0 to 1.0)
+          final delay = (index * 0.1)
+              .clamp(0.0, 1.0); // Create a delay based on index (0.0 to 1.0)
           return AnimatedBuilder(
             animation: _controller,
             child: Container(
@@ -219,4 +218,95 @@ class _StaggeredListState extends State<StaggeredList> with SingleTickerProvider
       ),
     );
   }
+}
+
+
+
+class CircularLoadingAnimation extends StatefulWidget {
+  CircularLoadingAnimation({Key? key}) : super(key: key);
+
+  @override
+  _CircularLoadingAnimationState createState() =>
+      _CircularLoadingAnimationState();
+}
+
+class _CircularLoadingAnimationState extends State<CircularLoadingAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBody: true,
+      backgroundColor: Colors.white,
+      body: Center(
+        child: AnimatedBuilder(
+          animation: controller,
+          builder: (context, child) {
+            return Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: SweepGradient(
+                  tileMode: TileMode.clamp,
+                  colors: [
+                    Color.fromARGB(255, 46, 49, 211),
+                    Colors.white,
+                    Colors.green,
+                  ],
+                  stops: [
+                    0.0,
+                    controller.value,
+                    1.0,
+                  ],
+                  startAngle: 0,
+                  endAngle: math.pi * 2 * controller.value,
+                ),
+              ),
+              child: Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    const Color.fromARGB(0, 240, 8, 8),
+                  ),
+                  strokeWidth: 1,
+             
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // Your bottom navigation bar here
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: CircularLoadingAnimation(),
+  ));
 }
