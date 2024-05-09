@@ -78,7 +78,7 @@ class _BottomAnimationState extends State<BottomAnimation>
                   ),
         
                   child: Container(
-                    height: 190,
+                    height: 185,
                   ),
                 ),
               );

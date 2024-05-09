@@ -21,7 +21,7 @@ class _ScreenAnimationState extends State<ScreenAnimation>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 7));
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
     _profilePictureAnimation = Tween(begin: 10.0, end: 50.0).animate(
         CurvedAnimation(
             parent: _controller,
@@ -136,7 +136,7 @@ class _ScaleAnimationButtonState extends State<ScaleAnimationButton> {
 
   void _onTapDown(TapDownDetails details) {
     setState(() {
-      _scale = 0.8;
+      _scale = 0.9;
     });
   }
 

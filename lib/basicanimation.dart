@@ -61,8 +61,7 @@ class _AnimatedExampleState extends State<AnimatedExample> {
           Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
-              Icon(Icons.autorenew_rounded),
+              const Icon(Icons.autorenew_rounded),
               AnimatedOpacity(
                 opacity: _visible ? 1.0 : 0.0,
                 duration: const Duration(milliseconds: 3000),
@@ -76,12 +75,11 @@ class _AnimatedExampleState extends State<AnimatedExample> {
                 duration: const Duration(milliseconds: 3000),
                 width: _isExpanded ? 100.0 : 70.0,
                 height: _isExpanded ? 100.0 : 70.0,
-
-decoration: BoxDecoration(
-  
-                  color: _isExpanded ? Colors.blue :Colors.amber,
-  
-   borderRadius: _isExpanded?   BorderRadius.all(Radius.circular(30.0)):BorderRadius.all(Radius.zero)),
+                decoration: BoxDecoration(
+                    color: _isExpanded ? Colors.blue : Colors.amber,
+                    borderRadius: _isExpanded
+                        ? const BorderRadius.all(Radius.circular(30.0))
+                        : const BorderRadius.all(Radius.zero)),
               ),
               const SizedBox(height: 20.0),
               AnimatedContainer(
@@ -267,6 +265,7 @@ class _AddButtonAnimationState extends State<AddButtonAnimation> {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 5;
     return SafeArea(
       child: Scaffold(
         body: Column(

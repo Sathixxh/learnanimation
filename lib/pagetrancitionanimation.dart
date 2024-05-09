@@ -4,7 +4,7 @@ import 'package:flutter/scheduler.dart';
 class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    timeDilation = 0.5;
+    timeDilation = 10;
     return Scaffold(
       appBar: AppBar(
         title: Text('First Page'),

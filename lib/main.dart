@@ -31,13 +31,13 @@ class MyApp extends StatelessWidget {
       // home: FlashAnimation()
       // home: ScreenAnimation(),
       // home: BottomAnimation(),
-      // home: HeroAnimation(),
+      home: HeroAnimation(),
       // home: CircularLoadingAnimation(),
 
-      home: BounceAnimation(),
+      // home: BounceAnimation(),
 
       // home: CardFlipAnimation(),
-      // home: ScaleAnimationButton(),
+      // home: ScaleAnimationButton()///////////////////,//////////////
     );
   }
 }
@@ -128,25 +128,6 @@ class _CardFlipAnimationState extends State<CardFlipAnimation>
       child: Image.asset("assets/image3.png"),
     );
   }
-
-  Widget _buildBack() {
-    return Transform(
-      alignment: Alignment.center,
-      transform: Matrix4.rotationY(3.14),
-      child: Container(
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 56, 90, 142),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: const Center(
-          child: Text(
-            'Flutter',
-            style: TextStyle(color: Colors.white, fontSize: 24),
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 // import 'package:flutter/material.dart';
@@ -214,39 +195,118 @@ class _ShoppingCartButtonState extends State<ShoppingCartButton> {
   }
 }
 
-class MyRotatingIcon extends StatefulWidget {
-  @override
-  _MyRotatingIconState createState() => _MyRotatingIconState();
-}
+// class MyRotatingIcon extends StatefulWidget {
+//   @override
+//   _MyRotatingIconState createState() => _MyRotatingIconState();
+// }
 
-class _MyRotatingIconState extends State<MyRotatingIcon>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+// class _MyRotatingIconState extends State<MyRotatingIcon>
+//     with SingleTickerProviderStateMixin {
+//   late AnimationController _controller;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 1), // Set the duration of the animation
-    )..repeat(); // Repeat the animation indefinitely
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = AnimationController(
+//       vsync: this,
+//       duration: Duration(seconds: 1), // Set the duration of the animation
+//     )..repeat(); // Repeat the animation indefinitely
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return RotationTransition(
-      turns: _controller,
-      child: Icon(
-        Icons.autorenew_sharp, // Replace with the desired icon
-        size: 50.0,
-        color: Colors.blue,
-      ),
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return RotationTransition(
+//       turns: _controller,
+//       child: Icon(
+//         Icons.autorenew_sharp, // Replace with the desired icon
+//         size: 50.0,
+//         color: Colors.blue,
+//       ),
+//     );
+//   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
+// // }
+
+// import 'package:flutter/material.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Multiple Animations Example',
+//       home: MultipleAnimationsExample(),
+//     );
+//   }
+// }
+
+// class MultipleAnimationsExample extends StatefulWidget {
+//   @override
+//   _MultipleAnimationsExampleState createState() => _MultipleAnimationsExampleState();
+// }
+
+// class _MultipleAnimationsExampleState extends State<MultipleAnimationsExample>
+//     with TickerProviderStateMixin {
+//   late AnimationController _controller1;
+//   late AnimationController _controller2;
+//   late Animation<double> _animation1;
+//   late Animation<double> _animation2;
+
+//   @override
+//   void initState() {
+//     super.initState();
+
+//     _controller1 = AnimationController(
+//       vsync: this,
+//       duration: Duration(seconds: 2),
+//     );
+//     _animation1 = Tween<double>(begin: 0, end: 2).animate(_controller1);
+//     _controller1.repeat(reverse: true);
+
+//     _controller2 = AnimationController(
+//       vsync: this,
+//       duration: Duration(seconds: 3),
+//     );
+//     _animation2 = Tween<double>(begin: 0, end: 1).animate(_controller2);
+//     _controller2.repeat(reverse: true);
+//   }
+
+//   @override
+//   void dispose() {
+//     _controller1.dispose();
+//     _controller2.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Multiple Animations Example'),
+//       ),
+//       body: Center(
+//         child: AnimatedBuilder(
+//           animation: Listenable.merge([_controller1, _controller2]),
+//           builder: (context, child) {
+//             return Transform.scale(
+//               scale: _animation2.value,
+//               child: Container(
+//                 width: 200 * _animation1.value,
+//                 height: 200 * _animation1.value,
+//                 color: Colors.green,
+//               ),
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
