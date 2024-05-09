@@ -79,9 +79,9 @@ class _BounceAnimationState extends State<BounceAnimation>
   }
 
   void _handleFlightIconTap() {
-    animationController.reset();
+    // animationController.reset();
     animationController.forward();
-    animationController.repeat();
+    // animationController.repeat();
   }
 
   @override
@@ -101,5 +101,7 @@ class _BounceAnimationState extends State<BounceAnimation>
     );
   }
 }
+
+
 
 

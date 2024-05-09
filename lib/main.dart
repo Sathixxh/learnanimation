@@ -27,16 +27,14 @@ class MyApp extends StatelessWidget {
       // home: AnimatedExample(),
       // home: MyRotatingIcon(),
       // home: AddButtonAnimation(),
-        // home:ShoppingCartButton() ,
+      // home:ShoppingCartButton() ,
       // home: FlashAnimation()
       // home: ScreenAnimation(),
       // home: BottomAnimation(),
       // home: HeroAnimation(),
-      home: CircularLoadingAnimation(),
+      // home: CircularLoadingAnimation(),
 
-    
-
-      // home: BounceAnimation(),
+      home: BounceAnimation(),
 
       // home: CardFlipAnimation(),
       // home: ScaleAnimationButton(),
@@ -215,9 +213,6 @@ class _ShoppingCartButtonState extends State<ShoppingCartButton> {
     );
   }
 }
-
-
-
 
 class MyRotatingIcon extends StatefulWidget {
   @override
