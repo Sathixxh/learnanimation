@@ -1,228 +1,73 @@
-// ignore_for_file: unused_import
-
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:learnanimation/basicanimation.dart';
-import 'package:learnanimation/bottomanimation.dart';
-import 'package:learnanimation/heroanimation.dart';
-import 'package:learnanimation/moveanimation.dart';
-import 'package:learnanimation/pagetrancitionanimation.dart';
-import 'package:learnanimation/screenanimation.dart';
-import 'dart:math' as math;
-
-void main() {
-  // timeDilation = 5.0;
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Animation Demo',
-      // home: AnimatedContainerExample(),
-      // home: FirstPage()
-      // home: AnimatedExample(),
-      // home: MyRotatingIcon(),
-      // home: AddButtonAnimation(),
-      // home:ShoppingCartButton() ,
-      // home: FlashAnimation()
-      // home: ScreenAnimation(),
-      // home: BottomAnimation(),
-      home: HeroAnimation(),
-      // home: CircularLoadingAnimation(),
-
-      // home: BounceAnimation(),
-
-      // home: CardFlipAnimation(),
-      // home: ScaleAnimationButton()///////////////////,//////////////
-    );
-  }
-}
-
-class CardFlipAnimation extends StatefulWidget {
-  const CardFlipAnimation({super.key});
-
-  @override
-  createState() => _CardFlipAnimationState();
-}
-
-class _CardFlipAnimationState extends State<CardFlipAnimation>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-  bool _isFront = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-
-    _animation = Tween<double>(begin: 0, end: 1).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _flipCard() {
-    if (_controller.status != AnimationStatus.forward) {
-      if (_isFront) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-      _isFront = !_isFront;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: _flipCard,
-        child: Center(
-          child: SizedBox(
-            width: 180,
-            height: 180,
-            child: Transform(
-                transform: Matrix4.rotationY(_animation.value * math.pi),
-                alignment: Alignment.center,
-                child: _isFront
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset("assets/image3.png"),
-                      )
-                    : Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.rotationY(3.14),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 56, 90, 142),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Center(
-                            child: Image.asset("assets/image4.png"),
-                          ),
-                        ),
-                      )),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFront() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8.0),
-      child: Image.asset("assets/image3.png"),
-    );
-  }
-}
+// // ignore_for_file: unused_import
 
 // import 'package:flutter/material.dart';
+// import 'package:flutter/scheduler.dart';
+// import 'package:learnanimation/basicanimation.dart';
+// import 'package:learnanimation/bottomanimation.dart';
+// import 'package:learnanimation/heroanimation.dart';
+// import 'package:learnanimation/moveanimation.dart';
+// import 'package:learnanimation/pagetrancitionanimation.dart';
+// import 'package:learnanimation/screenanimation.dart';
+// import 'dart:math' as math;
 
-class ShoppingCartButton extends StatefulWidget {
-  const ShoppingCartButton({super.key});
-
-  @override
-  State<ShoppingCartButton> createState() => _ShoppingCartButtonState();
-}
-
-class _ShoppingCartButtonState extends State<ShoppingCartButton> {
-  bool isExpanded = false;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Shopping Cart Button Animation"),
-      ),
-      body: Center(
-        child: GestureDetector(
-          onTap: () {
-            setState(() {
-              isExpanded = !isExpanded;
-            });
-          },
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 800),
-            height: 70,
-            width: isExpanded ? 220 : 90,
-            decoration: BoxDecoration(
-              color:
-                  isExpanded ? Colors.green : Color.fromARGB(255, 64, 123, 251),
-              borderRadius: BorderRadius.circular(isExpanded ? 50 : 10),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (isExpanded) const SizedBox(width: 25),
-                Icon(
-                  isExpanded ? Icons.check : Icons.shopping_cart,
-                  size: 30,
-                  color: Colors.white,
-                ),
-                // for space between add to cart text and icon
-                if (isExpanded) const SizedBox(width: 5),
-                // for text  in check icon only
-                if (isExpanded)
-                  const Expanded(
-                    child: Text(
-                      "Add to Cart",
-                      maxLines: 1,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.white),
-                    ),
-                  )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// class MyRotatingIcon extends StatefulWidget {
-//   @override
-//   _MyRotatingIconState createState() => _MyRotatingIconState();
+// void main() {
+//   // timeDilation = 5.0;
+//   runApp(const MyApp());
 // }
 
-// class _MyRotatingIconState extends State<MyRotatingIcon>
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Animation Demo',
+//       // home: AnimatedContainerExample(),
+//       // home: FirstPage()
+//       // home: AnimatedExample(),
+//       // home: MyRotatingIcon(),
+//       // home: AddButtonAnimation(),
+//       // home:ShoppingCartButton() ,
+//       // home: FlashAnimation()
+//       // home: ScreenAnimation(),
+//       home: BottomAnimation(),
+//       // home: HeroAnimation(),
+//       // home: CircularLoadingAnimation(),
+//       // home: RectangularLoadingAnimation(),
+
+//       // home: BounceAnimation(),
+
+//       // home: CardFlipAnimation(),
+//       // home: ScaleAnimationButton()///////////////////,//////////////
+//     );
+//   }
+// }
+
+// class CardFlipAnimation extends StatefulWidget {
+//   const CardFlipAnimation({super.key});
+
+//   @override
+//   createState() => _CardFlipAnimationState();
+// }
+
+// class _CardFlipAnimationState extends State<CardFlipAnimation>
 //     with SingleTickerProviderStateMixin {
 //   late AnimationController _controller;
+//   late Animation<double> _animation;
+//   bool _isFront = true;
 
 //   @override
 //   void initState() {
 //     super.initState();
 //     _controller = AnimationController(
 //       vsync: this,
-//       duration: Duration(seconds: 1), // Set the duration of the animation
-//     )..repeat(); // Repeat the animation indefinitely
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return RotationTransition(
-//       turns: _controller,
-//       child: Icon(
-//         Icons.autorenew_sharp, // Replace with the desired icon
-//         size: 50.0,
-//         color: Colors.blue,
-//       ),
+//       duration: const Duration(milliseconds: 500),
 //     );
+
+//     _animation = Tween<double>(begin: 0, end: 1).animate(_controller)
+//       ..addListener(() {
+//         setState(() {});
+//       });
 //   }
 
 //   @override
@@ -230,23 +75,163 @@ class _ShoppingCartButtonState extends State<ShoppingCartButton> {
 //     _controller.dispose();
 //     super.dispose();
 //   }
-// // }
 
-// import 'package:flutter/material.dart';
+//   void _flipCard() {
+//     if (_controller.status != AnimationStatus.forward) {
+//       if (_isFront) {
+//         _controller.forward();
+//       } else {
+//         _controller.reverse();
+//       }
+//       _isFront = !_isFront;
+//     }
+//   }
 
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Multiple Animations Example',
-//       home: MultipleAnimationsExample(),
+//     return Scaffold(
+//       body: GestureDetector(
+//         onTap: _flipCard,
+//         child: Center(
+//           child: SizedBox(
+//             width: 180,
+//             height: 180,
+//             child: Transform(
+//                 transform: Matrix4.rotationY(_animation.value * math.pi),
+//                 alignment: Alignment.center,
+//                 child: _isFront
+//                     ? ClipRRect(
+//                         borderRadius: BorderRadius.circular(8.0),
+//                         child: Image.asset("assets/image3.png"),
+//                       )
+//                     : Transform(
+//                         alignment: Alignment.center,
+//                         transform: Matrix4.rotationY(3.14),
+//                         child: Container(
+//                           decoration: BoxDecoration(
+//                             color: const Color.fromARGB(255, 56, 90, 142),
+//                             borderRadius: BorderRadius.circular(10),
+//                           ),
+//                           child: Center(
+//                             child: Image.asset("assets/image4.png"),
+//                           ),
+//                         ),
+//                       )),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   Widget _buildFront() {
+//     return ClipRRect(
+//       borderRadius: BorderRadius.circular(8.0),
+//       child: Image.asset("assets/image3.png"),
 //     );
 //   }
 // }
+
+// // import 'package:flutter/material.dart';
+
+// class ShoppingCartButton extends StatefulWidget {
+//   const ShoppingCartButton({super.key});
+
+//   @override
+//   State<ShoppingCartButton> createState() => _ShoppingCartButtonState();
+// }
+
+// class _ShoppingCartButtonState extends State<ShoppingCartButton> {
+//   bool isExpanded = false;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Shopping Cart Button Animation"),
+//       ),
+//       body: Center(
+//         child: GestureDetector(
+//           onTap: () {
+//             setState(() {
+//               isExpanded = !isExpanded;
+//             });
+//           },
+//           child: AnimatedContainer(
+//             duration: const Duration(milliseconds: 800),
+//             height: 70,
+//             width: isExpanded ? 220 : 90,
+//             decoration: BoxDecoration(
+//               color:
+//                   isExpanded ? Colors.green : Color.fromARGB(255, 64, 123, 251),
+//               borderRadius: BorderRadius.circular(isExpanded ? 50 : 10),
+//             ),
+//             child: Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 if (isExpanded) const SizedBox(width: 25),
+//                 Icon(
+//                   isExpanded ? Icons.check : Icons.shopping_cart,
+//                   size: 30,
+//                   color: Colors.white,
+//                 ),
+//                 // for space between add to cart text and icon
+//                 if (isExpanded) const SizedBox(width: 5),
+//                 // for text  in check icon only
+//                 if (isExpanded)
+//                   const Expanded(
+//                     child: Text(
+//                       "Add to Cart",
+//                       maxLines: 1,
+//                       style: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                           fontSize: 18,
+//                           color: Colors.white),
+//                     ),
+//                   )
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// // class MyRotatingIcon extends StatefulWidget {
+// //   @override
+// //   _MyRotatingIconState createState() => _MyRotatingIconState();
+// // }
+
+// // class _MyRotatingIconState extends State<MyRotatingIcon>
+// //     with SingleTickerProviderStateMixin {
+// //   late AnimationController _controller;
+
+// //   @override
+// //   void initState() {
+// //     super.initState();
+// //     _controller = AnimationController(
+// //       vsync: this,
+// //       duration: Duration(seconds: 1), // Set the duration of the animation
+// //     )..repeat(); // Repeat the animation indefinitely
+// //   }
+
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return RotationTransition(
+// //       turns: _controller,
+// //       child: Icon(
+// //         Icons.autorenew_sharp, // Replace with the desired icon
+// //         size: 50.0,
+// //         color: Colors.blue,
+// //       ),
+// //     );
+// //   }
+
+// //   @override
+// //   void dispose() {
+// //     _controller.dispose();
+// //     super.dispose();
+// //   }
+// // // }
 
 // class MultipleAnimationsExample extends StatefulWidget {
 //   @override
@@ -310,3 +295,126 @@ class _ShoppingCartButtonState extends State<ShoppingCartButton> {
 //     );
 //   }
 // }
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: AnimatedTextFields(),
+    );
+  }
+}
+
+class AnimatedTextFields extends StatefulWidget {
+  const AnimatedTextFields({Key? key}) : super(key: key);
+
+  @override
+  State<AnimatedTextFields> createState() => _AnimatedTextFieldsState();
+}
+
+class _AnimatedTextFieldsState extends State<AnimatedTextFields>
+    with SingleTickerProviderStateMixin {
+  final _focusNode1 = FocusNode();
+  final _focusNode2 = FocusNode();
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 5000),
+    );
+
+    _focusNode1.addListener(() {
+      if (_focusNode1.hasFocus) {
+        controller.forward();
+        controller.repeat(reverse: true);
+      } else {
+        controller.reverse();
+      }
+    });
+
+    _focusNode2.addListener(() {
+      if (_focusNode2.hasFocus) {
+        controller.forward();
+      } else {
+        controller.reverse();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    _focusNode1.dispose();
+    _focusNode2.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedBuilder(
+              animation: controller,
+              builder: (context, child) {
+                return Container(
+                  height: 70,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    gradient: LinearGradient(
+                      transform: GradientRotation(10),
+                      colors: [
+                    
+                        Colors.white,
+                        const Color.fromARGB(255, 139, 202, 253),
+                      ],
+                      stops: [
+                
+                        controller.value,
+                       controller.value,
+                      ],
+                    ),
+                  ),
+                  child: Card(
+                    semanticContainer: true,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: SizedBox(
+                        height: 80,
+                        // width: 250, // Adjust the width as needed
+                        child: TextFormField(
+                          focusNode: _focusNode1,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Enter text',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -310,3 +310,96 @@ void main() {
     home: CircularLoadingAnimation(),
   ));
 }
+
+
+
+// import 'package:flutter/material.dart';
+// import 'dart:math' as math;
+
+class RectangularLoadingAnimation extends StatefulWidget {
+  RectangularLoadingAnimation({Key? key}) : super(key: key);
+
+  @override
+  _RectangularLoadingAnimationState createState() =>
+      _RectangularLoadingAnimationState();
+}
+
+class _RectangularLoadingAnimationState
+    extends State<RectangularLoadingAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBody: true,
+      backgroundColor: Colors.white,
+      body: Center(
+        child: AnimatedBuilder(
+          animation: controller,
+          builder: (context, child) {
+            return Container(
+              width: 200,
+              height: 100, // Adjust the height to your preference
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20), // Rounded corners
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color.fromARGB(255, 46, 49, 211),
+                    Colors.white,
+                    Colors.green,
+                  ],
+                  stops: [
+                    0.0,
+                    controller.value,
+                    1.0,
+                  ],
+                ),
+              ),
+              child: Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    const Color.fromARGB(0, 240, 8, 8),
+                  ),
+                  strokeWidth: 1,
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // Your bottom navigation bar here
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// void main() {
+//   runApp(MaterialApp(
+//     home: RectangularLoadingAnimation(),
+//   ));
+// }
